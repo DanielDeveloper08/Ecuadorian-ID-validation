@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Vista;
 
-/**
- *
- * @author Daniel
- */
+import Modelo.CedulaEcuatoriana;
+import Modelo.InformacionCedula;
+import javax.swing.JOptionPane;
+
 public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
 
     /**
@@ -28,8 +24,16 @@ public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtCedula = new javax.swing.JTextField();
         txtValidar = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        txtProvincia = new javax.swing.JTextField();
+        txtVerificador = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        btnLimpiar = new javax.swing.JButton();
+        txtRegistro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -39,6 +43,34 @@ public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
         jLabel2.setText("Ingrese su número de cédula: ");
 
         txtValidar.setText("Validar");
+        txtValidar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtValidarActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel3.setText("Datos de la cédula");
+
+        txtProvincia.setEnabled(false);
+
+        txtVerificador.setEnabled(false);
+
+        jLabel4.setText("Numeros de registro");
+
+        jLabel5.setText("Digito verificador");
+
+        jLabel6.setText("Provincia");
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+
+        txtRegistro.setEnabled(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -50,13 +82,30 @@ public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
                         .addGap(170, 170, 170)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(174, 174, 174)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtVerificador, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtValidar)))
-                .addContainerGap(68, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnLimpiar)
+                            .addComponent(txtValidar))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -66,13 +115,84 @@ public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtValidar))
-                .addContainerGap(233, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtProvincia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(txtRegistro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtVerificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(btnLimpiar)
+                .addGap(17, 17, 17))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtValidarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtValidarActionPerformed
+        // Limpia los campos de texto en la interfaz gráfica
+        limpiarCampos();
+
+        // Crea una instancia de la clase CedulaEcuatoriana para validar la cédula
+        CedulaEcuatoriana cedula = new CedulaEcuatoriana();
+
+        try {
+            // Llama al método validarCedula de la instancia de CedulaEcuatoriana
+            boolean esValida = cedula.validarCedula(this.txtCedula.getText());
+
+            // Si la cédula es válida (true), muestra los detalles en la interfaz gráfica
+            if (esValida) {
+                InformacionCedula infoCedula = cedula.mostrarDetallesCedula();
+                mostrarDetallesCedula(infoCedula); // Muestra los detalles en la interfaz
+                // Muestra un mensaje de cédula válida utilizando JOptionPane
+                JOptionPane.showMessageDialog(null, "Cédula válida", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (Exception ex) {
+            // Maneja cualquier excepción que pueda ocurrir al validar la cédula
+            JOptionPane.showMessageDialog(this, "Error al validar la cédula: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_txtValidarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // Limpia los campos de texto en la interfaz gráfica
+        limpiarCampos();
+
+        // Establece el texto del campo txtCedula como una cadena vacía ("")
+        txtCedula.setText("");
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void mostrarDetallesCedula(InformacionCedula data) {
+        // Establece el texto del campo txtProvincia con el valor obtenido de data.getProvincia()
+        txtProvincia.setText(data.getProvincia());
+
+        // Establece el texto del campo txtRegistro con el valor obtenido de data.getNumerosRegistro()
+        txtRegistro.setText(data.getNumerosRegistro());
+
+        // Establece el texto del campo txtVerificador con el valor del dígito verificador convertido a String
+        txtVerificador.setText(String.valueOf(data.getDigitoVerificador()));
+    }
+
+    private void limpiarCampos() {
+        // Establece el texto del campo txtProvincia como una cadena vacía ("")
+        txtProvincia.setText("");
+
+        // Establece el texto del campo txtRegistro como una cadena vacía ("")
+        txtRegistro.setText("");
+
+        // Establece el texto del campo txtVerificador como una cadena vacía ("")
+        txtVerificador.setText("");
+    }
 
     /**
      * @param args the command line arguments
@@ -110,9 +230,17 @@ public class FrmCedulaEcuatoriana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtProvincia;
+    private javax.swing.JTextField txtRegistro;
     private javax.swing.JButton txtValidar;
+    private javax.swing.JTextField txtVerificador;
     // End of variables declaration//GEN-END:variables
 }
